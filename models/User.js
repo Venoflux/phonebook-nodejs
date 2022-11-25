@@ -23,26 +23,6 @@ const UserSchema = new mongoose.Schema({
     required: [true, "Please provide password"],
     minlength: 6,
   },
-  numbers: [
-    {
-      numbername: {
-        type: String,
-        required: [true, "Please provide name"],
-        maxlength: 50,
-        minlength: 3,
-      },
-      countrycode: {
-        type: String,
-        required: [true, "Please provide country code"],
-        match: [/^(\+\d*)/, "Please provide a valid country code"],
-      },
-      phonenumber: {
-        type: String,
-        required: [true, "Please provide phone number"],
-        match: [],
-      },
-    },
-  ],
 });
 
 UserSchema.pre("save", async function () {
