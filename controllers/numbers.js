@@ -23,6 +23,7 @@ const getNumber = async (req, res) => {
   if (!number) {
     throw new NotFoundError(`No number with such id ${numberId}`);
   }
+  res.status(StatusCodes.OK).json(number);
 };
 
 const createNumber = async (req, res) => {

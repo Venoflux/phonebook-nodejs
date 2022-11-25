@@ -1,0 +1,218 @@
+openapi: 3.0.0
+info:
+  title: Phonebook API
+  contact: {}
+  version: "1.0"
+servers:
+  - url: http://localhost:5000/api/v1
+    variables: {}
+paths:
+  /auth/register:
+    post:
+      tags:
+        - Auth
+      summary: Register User
+      operationId: RegisterUser
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterUserRequest"
+            example:
+              name: sarp
+              email: sarpb@gmail.com
+              password: thispassword
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+      security: []
+  /auth/login:
+    post:
+      tags:
+        - Auth
+      summary: Login User
+      operationId: LoginUser
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginUserRequest"
+            example:
+              email: sarpb@gmail.com
+              password: thispassword
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+      security: []
+  /numbers:
+    post:
+      tags:
+        - Numbers
+      summary: Create Number
+      operationId: CreateNumber
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateNumberRequest"
+            example:
+              numbername: Can
+              countrycode: +48
+              phonenumber: 57078563
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+    get:
+      tags:
+        - Numbers
+      summary: Get All Numbers
+      operationId: GetAllNumbers
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /numbers/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The number ID
+    get:
+      tags:
+        - Numbers
+      summary: Get Single Number
+      operationId: GetSingleNumber
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+
+    patch:
+      tags:
+        - Numbers
+      summary: Update Number
+      operationId: UpdateNumber
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateNumberRequest"
+            example:
+              numbername: Can
+              countrycode: +90
+              phonenumber: 570785634
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+        - Numbers
+      summary: Delete Number
+      operationId: DeleteNumber
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+components:
+  schemas:
+    RegisterUserRequest:
+      title: RegisterUserRequest
+      required:
+        - name
+        - email
+        - password
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        name: sarp
+        email: sarp@gmail.com
+        password: mypassword
+    LoginUserRequest:
+      title: LoginUserRequest
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: sarp@gmail.com
+        password: secret
+    CreateNumberRequest:
+      title: CreateNumberRequest
+      required:
+        - company
+        - position
+      type: object
+      properties:
+        company:
+          type: string
+        position:
+          type: string
+      example:
+        company: google
+        position: front-end developer
+    UpdateNumberRequest:
+      title: UpdateNumberRequest
+      required:
+        - numbername
+        - countrycode
+        - phonenumber
+      type: object
+      properties:
+        company:
+          type: string
+        position:
+          type: string
+      example:
+        numbername: Can
+        countrycode: +90
+        phonenumber: 5707856325
+  securitySchemes:
+    httpBearer:
+      type: http
+      scheme: bearer
+security:
+  - httpBearer: []
+tags:
+  - name: Auth
+    description: ""
+  - name: Numbers
+    description: ""
