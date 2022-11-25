@@ -20,6 +20,11 @@ const NumberSchema = new mongoose.Schema({
       "Please provide a valid phone number",
     ],
   },
+  createdBy: {
+    type: mongoose.Types.ObjectId,
+    ref: "User",
+    required: [true, "Please provide user"],
+  },
 });
 
 module.exports = mongoose.model("Number", NumberSchema);
